@@ -11,8 +11,7 @@ jobs:
 
   build:
 
-    runs-on: windows-latest  # For a list of available runner types, refer to
-                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+    runs-on: windows-2025-vs2026
 
     env:
       Solution_Name: CopilotSmartCards
@@ -26,14 +25,16 @@ jobs:
         fetch-depth: 0
 
     # Install the .NET Core workload
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
+    # - name: Install .NET Core
+    #   uses: actions/setup-dotnet@v4
+    #   with:
+    #     dotnet-version: 8.0.x
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v2
+      with:
+        vs-version: '18'
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application

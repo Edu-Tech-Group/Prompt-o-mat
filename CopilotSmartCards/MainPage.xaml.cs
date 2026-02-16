@@ -50,6 +50,13 @@ namespace CopilotSmartCards
             }
 
             var deviceInfos = await SmartCardReaderUtils.GetAllSmartCardReaderInfos(SmartCardReaderKind.Any);
+
+            if (deviceInfos == null)
+            {
+                NotifyUser("Failed to iterate all smart card readers. is the smart card reader plugged in?");
+                return;
+            }
+            
             var deviceInfo = deviceInfos.Where(x => !x.Name.Contains("Windows Hello")).FirstOrDefault();
 
             if (deviceInfo == null)

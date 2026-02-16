@@ -7,7 +7,7 @@ $expiryDate = $Now.AddMonths(24)
 Write-Host "Generating certificate"
 $cert = New-SelfSignedCertificate -Type CodeSigningCert -Subject "CN=$certname, O=Edu-Tech, C=US" -DNSName $certdomain -KeyUsage DigitalSignature -FriendlyName "Prompt-o-mat" -CertStoreLocation "Cert:\CurrentUser\My" -KeyAlgorithm RSA -KeyLength 4096 -NotBefore $now -NotAfter $expiryDate
 Write-Host "Exporting certificate file"
-Export-PfxCertificate -Cert $cert -FilePath "./prompt-o-mat.pfx" -Password $certpassword
+Export-PfxCertificate -Cert $cert -FilePath "./$certname.pfx" -Password $certpassword
 
 Write-Host "Cleaning up..."
 $thumbprint = $cert.Thumbprint
